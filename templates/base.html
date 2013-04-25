@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="{{ LANGUAGE_CODE }}"{% if LANGUAGE_BIDI %} dir="rtl"{% endif %}>
+	{% load pages_tags mezzanine_tags i18n future staticfiles %}
+	<head>
+
+		<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+		<meta name="viewport" content="width=device-width">
+		<meta name="keywords" content="{% block meta_keywords %}{% endblock %}">
+		<meta name="description" content="{% block meta_description %}{% endblock %}">
+		<title>{% block meta_title %}{% endblock %}{% if settings.SITE_TITLE %} | {{ settings.SITE_TITLE }}{% endif %}</title>
+		<link rel="shortcut icon" href="{% static "img/favicon.ico" %}">
+
+		{% ifinstalled mezzanine.blog %}
+		<link rel="alternate" type="application/rss+xml" title="RSS" href="{% url "blog_post_feed" "rss" %}">
+		<link rel="alternate" type="application/atom+xml" title="Atom" href="{% url "blog_post_feed" "atom" %}">
+		{% endifinstalled %}
+
+		{% compress css %}
+		<link rel="stylesheet" href="{% static "css/bootstrap.css" %}">
+		<link rel="stylesheet" href="{% static "css/mezzanine.css" %}">
+		<link rel="stylesheet" href="{% static "css/bootstrap-responsive.css" %}">
+		<link rel="stylesheet" href="{% static "css/global.css" %}">
+		{% if LANGUAGE_BIDI %}
+		<link rel="stylesheet" href="{% static "css/rtl.css" %}">
+		{% endif %}
+		{% ifinstalled cartridge.shop %}
+		<link rel="stylesheet" href="{% static "css/cartridge.css" %}">
+		{% if LANGUAGE_BIDI %}
+		<link rel="stylesheet" href="{% static "css/cartridge.rtl.css" %}">
+		{% endif %}
+		{% endifinstalled %}
+		{% block extra_css %}{% endblock %}
+		{% endcompress %}
+
+		{% compress js %}
+		<script src="{% static "mezzanine/js/"|add:settings.JQUERY_FILENAME %}"></script>
+		<script src="{% static "js/bootstrap.js" %}"></script>
+		<script src="{% static "js/bootstrap-extras.js" %}"></script>
+		{% block extra_js %}{% endblock %}
+		{% endcompress %}
+		<!--[if lt IE 9]>
+		<script src="{% static "js/html5shiv.js" %}"></script>
+		<![endif]-->
+
+		{% block extra_head %}{% endblock %}
+	</head>
+	<body id="{% block body_id %}body{% endblock %}">
+
+		<div class="navbar navbar-fixed-top">
+			<div class="navbar-inner">
+				<div class="container">
+					<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </a>
+					{% if settings.SITE_TITLE %}<a class="brand" href="/">{{ settings.SITE_TITLE }}</a>{% endif %}
+					{% if settings.SITE_TAGLINE %}
+					<p class="navbar-text">
+						{{ settings.SITE_TAGLINE }}
+					</p>
+					{% endif %}
+					<div class="nav-collapse">
+						{% search_form "all" %}
+						{% page_menu "pages/menus/dropdown.html" %}
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="container">
+
+			{% nevercache %}
+			{% for message in messages %}
+			<div class="alert alert-{{ message.tags }}" data-alert="alert">
+				<a class="close" href="#" onclick="$(this).parent().fadeOut('fast'); return false;">×</a>{{ message }}
+			</div>
+			{% endfor %}
+			{% endnevercache %}
+
+			<ul class="breadcrumb">
+				{% spaceless %}
+				{% block breadcrumb_menu %}{% page_menu "pages/menus/breadcrumb.html" %}{% endblock %}
+				{% endspaceless %}
+			</ul>
+
+			<h1>{% block title %}{% endblock %}</h1>
+
+		</div>
+
+		<div class="container">
+			<div class="row">
+
+				<!-- div class="span2 left">
+				{% block left_panel %}
+				<div class="panel tree">{% page_menu "pages/menus/tree.html" %}</div>
+				{% endblock %}
+				</div -->
+
+				<div class="span9 left">
+					{% block main %}{% endblock %}
+				</div>
+
+				<div class="span3 right">
+					{% nevercache %}
+					{% include "includes/user_panel.html" %}
+					{% endnevercache %}
+					<!-- div class="panel">
+						{% block right_panel %}
+						{% ifinstalled mezzanine.twitter %}
+						{% include "twitter/tweets.html" %}
+						{% endifinstalled %}
+						{% endblock %}
+					</div -->
+				</div>
+
+			</div>
+		</div>
+
+		<footer>
+			<div class="container">
+				<!-- {% page_menu "pages/menus/footer.html" %} -->
+				
+				<div class="row">
+
+				<div class="span1 left">
+				</div>
+
+				<div class="span10 middle">
+					<div class="span3 fblancoalfa" id="contacto">
+						<ul class="nav-stacked">
+							<li>
+								<i class="icon-comment"></i>
+								<strong>Contacto</strong>
+							</li>
+							<li><a href="#">alfonso@gmail.com</a></li>
+							<li>665554489</li>
+						</ul>
+					</div>
+					<div class="span3 fblancoalfa" id="redes">
+						<ul class="nav-stacked">
+							<li>
+								<i class="icon-globe"></i>
+								<strong>Síguenos</strong>
+							</li>
+							<li><a href="#">Facebook</a></li>
+							<li>rss</li>
+						</ul>
+					</div>
+					<div class="span3 fblancoalfa" id="creditos">
+						<ul class="nav-stacked">
+							<li>
+								<i class="icon-fire"></i>
+								<a href="#" data-toggle="tooltip1" title="Laura León (uym)">diseño</a> |
+								<a href="#" data-toggle="tooltip1" title="Sergio Pérez">desarrollo</a> 
+							</li>
+							<li>
+								<a href="http://mezzanine.jupo.org/">mezzanine</a> |
+								<a href="http://twitter.github.io/bootstrap">bootstrap</a>
+							</li>
+							<li>
+								<a href="http://creativecommons.org/licenses/by-sa/3.0/">CC BY-SA 3.0</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="span1 right">
+				</div>
+
+			</div>
+				
+				<!-- p>
+					<i class="icon-fire"></i>
+					{% trans "Powered by" %}
+					<a href="http://mezzanine.jupo.org">Laura</a>{% ifinstalled cartridge.shop %}, <a href="http://cartridge.jupo.org">Cartridge</a>{% endifinstalled %}
+					{% trans "and" %}
+					<a href="http://www.djangoproject.com">Sergio</a>
+					<span class="separator">|</span>
+					{% trans "Theme by" %} <a href="http://twitter.github.com/bootstrap/">Bootstrap</a>
+					{% ifinstalled mezzanine.mobile %}
+					<span class="separator">|</span>
+					<a href="{% url "set_device" "mobile" %}?next={{ request.path }}">{% trans "View Mobile Site" %}</a>
+					{% endifinstalled %}
+				</p -->
+			</div>
+		</footer>
+
+		{% include "includes/footer_scripts.html" %}
+
+	</body>
+</html>

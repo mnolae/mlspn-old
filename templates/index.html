@@ -1,0 +1,69 @@
+{% extends "base_index.html" %}
+{% load i18n %}
+
+{% block meta_title %}{% trans "Home" %}{% endblock %}
+{% block title %}{% trans "Home" %}{% endblock %}
+
+{% block breadcrumb_menu %}
+<li class="active">{% trans "Home" %}</li>
+{% endblock %}
+
+{% block main %}
+{% blocktrans %}
+	<div class="container posbottom">
+			<div class="span1 left"></div>
+			<div class="span10 middle">
+				<div class="span5 fblancoalfa">algo</div>
+				<div class="span4 fblancoalfa">algo</div>
+			<div class="span1 right"></div>
+	</div>
+<footer>
+			<div class="container">
+				<div class="span1 left"></div>
+
+				<div class="span10 middle">
+					<div class="span3 left fblancoalfa" id="contacto">
+						<ul class="nav-stacked">
+							<li>
+								<i class="icon-comment"></i>
+								<strong>Contacto</strong>
+							</li>
+							<li><a href="#">alfonso@gmail.com</a></li>
+							<li>665554489</li>
+						</ul>
+					</div>
+					<div class="span3 middle fblancoalfa" id="redes">
+						<ul class="nav-stacked">
+							<li>
+								<i class="icon-globe"></i>
+								<strong>Síguenos</strong>
+							</li>
+							<li><a href="#">Facebook</a></li>
+							<li>rss</li>
+						</ul>
+					</div>
+					<div class="span3 right fblancoalfa" id="creditos">
+						<ul class="nav-stacked">
+							<li>
+								<i class="icon-fire"></i>
+								<a href="#" data-toggle="tooltip1" title="Laura León (uym)">diseño</a> |
+								<a href="#" data-toggle="tooltip1" title="Sergio Pérez">desarrollo</a> 
+							</li>
+							<li>
+								<a href="http://mezzanine.jupo.org/">mezzanine</a> |
+								<a href="http://twitter.github.io/bootstrap">bootstrap</a>
+							</li>
+							<li>
+								<a href="http://creativecommons.org/licenses/by-sa/3.0/">CC BY-SA 3.0</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="span1 right">
+				</div>
+
+			</div>
+		</footer>
+{% endblocktrans %}
+{% endblock %}

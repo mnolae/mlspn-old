@@ -1,0 +1,10 @@
+/* Estilos propios */
+.fblancoalfa {
+	background-color: rgba(255,255,255,0.8);
+	border: 1px solid white;
+}
+
+.posbottom {
+	position: absolute;
+	bottom: 1%;
+}
