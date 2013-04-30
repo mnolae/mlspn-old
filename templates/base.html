@@ -19,7 +19,6 @@
 		<link rel="stylesheet" href="{% static "css/bootstrap.css" %}">
 		<link rel="stylesheet" href="{% static "css/mezzanine.css" %}">
 		<link rel="stylesheet" href="{% static "css/bootstrap-responsive.css" %}">
-		<link rel="stylesheet" href="{% static "css/global.css" %}">
 		{% if LANGUAGE_BIDI %}
 		<link rel="stylesheet" href="{% static "css/rtl.css" %}">
 		{% endif %}
@@ -57,7 +56,7 @@
 					</p>
 					{% endif %}
 					<div class="nav-collapse">
-						{% search_form "all" %}
+						{% search_form %}
 						{% page_menu "pages/menus/dropdown.html" %}
 					</div>
 				</div>
@@ -84,7 +83,7 @@
 
 		</div>
 
-		<div class="container">
+		<div class="container fblancoalfa">
 			<div class="row">
 
 				<!-- div class="span2 left">
@@ -101,13 +100,13 @@
 					{% nevercache %}
 					{% include "includes/user_panel.html" %}
 					{% endnevercache %}
-					<!-- div class="panel">
+					<div class="panel">
 						{% block right_panel %}
 						{% ifinstalled mezzanine.twitter %}
 						{% include "twitter/tweets.html" %}
 						{% endifinstalled %}
 						{% endblock %}
-					</div -->
+					</div>
 				</div>
 
 			</div>

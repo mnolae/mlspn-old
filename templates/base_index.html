@@ -43,6 +43,15 @@
 		<![endif]-->
 
 		{% block extra_head %}{% endblock %}
+		<script>
+            $(function () {
+                $('#ttlaura').tooltip();
+                $('#ttsergio').tooltip();
+                $('#ttmezzanine').tooltip();
+                $('#ttbootstrap').tooltip();
+                $('#ttcc').tooltip();
+            });
+		</script>
 	</head>
 	<body id="{% block body_id %}body{% endblock %}">
 		<div class="navbar navbar-fixed-top">
@@ -56,7 +65,7 @@
 					</p>
 					{% endif %}
 					<div class="nav-collapse">
-						{% search_form "all" %}
+						{% search_form %}
 						{% page_menu "pages/menus/dropdown.html" %}
 					</div>
 				</div>
@@ -104,6 +113,54 @@
 			</div>
 		</div>
 
+		<footer>
+			<div class="container">
+				<div class="span1 left"></div>
+
+				<div class="span10 middle">
+					<div class="span3 left fblancoalfa" id="contacto">
+						<ul class="nav-stacked">
+							<li>
+								<i class="icon-comment"></i>
+								<strong>Contacto</strong>
+							</li>
+							<li><a href="#">alfonso@gmail.com</a></li>
+							<li>665554489</li>
+						</ul>
+					</div>
+					<div class="span3 middle fblancoalfa" id="redes">
+						<ul class="nav-stacked">
+							<li>
+								<i class="icon-globe"></i>
+								<strong>Síguenos</strong>
+							</li>
+							<li><a href="#">Facebook</a></li>
+							<li>rss</li>
+						</ul>
+					</div>
+					<div class="span3 right fblancoalfa" id="creditos">
+						<ul class="nav-stacked">
+							<li>
+								<i class="icon-fire"></i>
+								<a href="#" id="ttlaura" title="Laura León (uym)">diseño</a> |
+								<a href="#" id="ttsergio" title="Sergio Pérez">desarrollo</a> 
+							</li>
+							<li>
+								<a href="http://mezzanine.jupo.org/" id="ttmezzanine" title="Django CMS">mezzanine</a> |
+								<a href="http://twitter.github.io/bootstrap" id="ttbootstrap" title="Less CSS">bootstrap</a>
+							</li>
+							<li>
+								<a href="http://creativecommons.org/licenses/by-sa/3.0/" id="ttcc" title="Licencia">CC BY-SA 3.0</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="span1 right">
+				</div>
+
+			</div>
+		</footer>
 		
 
 		{% include "includes/footer_scripts.html" %}

@@ -12,21 +12,21 @@
 
 # Controls the ordering and grouping of the admin menu.
 #
-# ADMIN_MENU_ORDER = (
-#     ("Content", ("pages.Page", "blog.BlogPost",
-#        "generic.ThreadedComment", ("Media Library", "fb_browse"),)),
-#     ("Site", ("sites.Site", "redirects.Redirect", "conf.Setting")),
-#     ("Users", ("auth.User", "auth.Group",)),
-# )
+#ADMIN_MENU_ORDER = (    
+#                    ("Content", ("pages.Page", "blog.BlogPost",
+#                                 "generic.ThreadedComment", ("Media Library", "fb_browse"),)),
+#                    ("Site", ("sites.Site", "redirects.Redirect", "conf.Setting")),
+#                    ("Users", ("auth.User", "auth.Group",)),
+#)
 
 # A three item sequence, each containing a sequence of template tags
 # used to render the admin dashboard.
 #
-# DASHBOARD_TAGS = (
-#     ("blog_tags.quick_blog", "mezzanine_tags.app_list"),
-#     ("comment_tags.recent_comments",),
-#     ("mezzanine_tags.recent_actions",),
-# )
+DASHBOARD_TAGS = (
+                  ("mezzanine_tags.app_list",),
+                  ("comment_tags.recent_comments",),
+                  ("mezzanine_tags.recent_actions",),
+)
 
 # A sequence of templates used by the ``page_menu`` template tag. Each
 # item in the sequence is a three item sequence, containing a unique ID
@@ -127,7 +127,7 @@ SECRET_KEY = "bf98162e-1a97-48cc-8bd4-90fe82c2ffb6e4d4e8bd-5915-4e44-b94e-d516e3
 # Tuple of IP addresses, as strings, that:
 #   * See debug comments, when DEBUG is true
 #   * Receive x-headers
-INTERNAL_IPS = ("127.0.0.1",)
+INTERNAL_IPS = ("127.0.0.1","192.168.1.33")
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
@@ -238,6 +238,7 @@ INSTALLED_APPS = (
     "mezzanine.twitter",
     #"mezzanine.accounts",
     #"mezzanine.mobile",
+    "evento",
 )
 
 # List of processors used by RequestContext to populate the context.
