@@ -1,8 +1,11 @@
 Django==1.5.1
 Mezzanine==1.4.5
+PIL==1.1.7
 Pillow==2.0.0
 bleach==1.2.1
-filebrowser-safe==0.2.26
+distribute==0.6.38
+filebrowser-safe==0.2.27
+geopy==0.95.1
 grappelli-safe==0.2.21
 html5lib==0.95
 pytz==2013b

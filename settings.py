@@ -12,12 +12,12 @@
 
 # Controls the ordering and grouping of the admin menu.
 #
-#ADMIN_MENU_ORDER = (    
-#                    ("Content", ("pages.Page", "blog.BlogPost",
-#                                 "generic.ThreadedComment", ("Media Library", "fb_browse"),)),
-#                    ("Site", ("sites.Site", "redirects.Redirect", "conf.Setting")),
-#                    ("Users", ("auth.User", "auth.Group",)),
-#)
+ADMIN_MENU_ORDER = (    
+                    ("Content", ("pages.Page", "blog.BlogPost", "event.EventPost",
+                                 "generic.ThreadedComment", ("Media Library", "fb_browse"),)),
+                    ("Site", ("sites.Site", "redirects.Redirect", "conf.Setting")),
+                    ("Users", ("auth.User", "auth.Group",)),
+)
 
 # A three item sequence, each containing a sequence of template tags
 # used to render the admin dashboard.
@@ -73,6 +73,8 @@ DASHBOARD_TAGS = (
 # Setting to turn on featured images for blog posts. Defaults to False.
 #
 # BLOG_USE_FEATURED_IMAGE = True
+
+EVENT_USE_FEATURED_IMAGE = True
 
 # If True, the south application will be automatically added to the
 # INSTALLED_APPS setting.
@@ -238,7 +240,7 @@ INSTALLED_APPS = (
     "mezzanine.twitter",
     #"mezzanine.accounts",
     #"mezzanine.mobile",
-    "evento",
+    "event",
 )
 
 # List of processors used by RequestContext to populate the context.
