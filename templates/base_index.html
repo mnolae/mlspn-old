@@ -43,29 +43,12 @@
 		<![endif]-->
 
 		{% block extra_head %}{% endblock %}
-		<script>
-            $(function () {
-                $('#ttlaura').tooltip();
-                $('#ttsergio').tooltip();
-                $('#ttmezzanine').tooltip();
-                $('#ttbootstrap').tooltip();
-                $('#ttcc').tooltip();
-            });
-		</script>
 	</head>
 	<body id="{% block body_id %}body{% endblock %}">
 		<div class="navbar navbar-fixed-top">
 			<div class="navbar-inner">
 				<div class="container">
-					<!-- a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </a>
-					{% if settings.SITE_TITLE %}<a class="brand" href="/">{{ settings.SITE_TITLE }}</a>{% endif %}
-					{% if settings.SITE_TAGLINE %}
-					<p class="navbar-text">
-						{{ settings.SITE_TAGLINE }}
-					</p -->
-					{% endif %}
 					<div class="nav-collapse">
-						{% search_form %}
 						{% page_menu "pages/menus/dropdown.html" %}
 					</div>
 				</div>
@@ -73,6 +56,12 @@
 		</div>
 
 		<div class="container">
+			{% if settings.SITE_TITLE %}<a class="brand" href="/">{{ settings.SITE_TITLE }}</a>{% endif %}
+			{% if settings.SITE_TAGLINE %}
+			<p>
+				{{ settings.SITE_TAGLINE }}
+			</p>
+			{% endif %}
 
 			{% nevercache %}
 			{% for message in messages %}
@@ -87,27 +76,8 @@
 		<div class="container">
 			<div class="row">
 
-				<!-- div class="span2 left">
-				{% block left_panel %}
-				<div class="panel tree">{% page_menu "pages/menus/tree.html" %}</div>
-				{% endblock %}
-				</div -->
-
-				<div class="span9 left">
+				<div class="span12">
 					{% block main %}{% endblock %}
-				</div>
-
-				<div class="span3 right">
-					{% nevercache %}
-					{% include "includes/user_panel.html" %}
-					{% endnevercache %}
-					<!-- div class="panel">
-						{% block right_panel %}
-						{% ifinstalled mezzanine.twitter %}
-						{% include "twitter/tweets.html" %}
-						{% endifinstalled %}
-						{% endblock %}
-					</div -->
 				</div>
 
 			</div>
@@ -115,50 +85,6 @@
 
 		<footer>
 			<div class="container">
-				<div class="span1 left"></div>
-
-				<div class="span10 middle">
-					<div class="span3 left fblancoalfa" id="contacto">
-						<ul class="nav-stacked">
-							<li>
-								<i class="icon-comment"></i>
-								<strong>Contacto</strong>
-							</li>
-							<li><a href="#">alfonso@gmail.com</a></li>
-							<li>665554489</li>
-						</ul>
-					</div>
-					<div class="span3 middle fblancoalfa" id="redes">
-						<ul class="nav-stacked">
-							<li>
-								<i class="icon-globe"></i>
-								<strong>Síguenos</strong>
-							</li>
-							<li><a href="#">Facebook</a></li>
-							<li>rss</li>
-						</ul>
-					</div>
-					<div class="span3 right fblancoalfa" id="creditos">
-						<ul class="nav-stacked">
-							<li>
-								<i class="icon-fire"></i>
-								<a href="#" id="ttlaura" title="Laura León (uym)">diseño</a> |
-								<a href="#" id="ttsergio" title="Sergio Pérez">desarrollo</a> 
-							</li>
-							<li>
-								<a href="http://mezzanine.jupo.org/" id="ttmezzanine" title="Django CMS">mezzanine</a> |
-								<a href="http://twitter.github.io/bootstrap" id="ttbootstrap" title="Less CSS">bootstrap</a>
-							</li>
-							<li>
-								<a href="http://creativecommons.org/licenses/by-sa/3.0/" id="ttcc" title="Licencia">CC BY-SA 3.0</a>
-							</li>
-						</ul>
-					</div>
-				</div>
-
-				<div class="span1 right">
-				</div>
-
 			</div>
 		</footer>
 		

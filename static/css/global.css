@@ -1,6 +1,6 @@
 /* (re)Estilado */
 body {
-	background: #FFFFFF  url("../img/fondo.jpg") no-repeat top left;
+	background: #FFFFFF  url("../img/fondo.jpg") no-repeat;
 }
 
 footer {
@@ -8,23 +8,48 @@ footer {
 	margin: 0;
 }
 
+.navbar-inner {
+  min-height: 40px;
+  padding-right: 20px;
+  padding-left: 20px;
+  background: transparent;
+  border: 0;
+}
+
+.navbar-fixed-top .navbar-inner {
+  -webkit-box-shadow: none;
+     -moz-box-shadow: none;
+          box-shadow: none;
+}
+
+.navbar .nav > li > a {
+  color: #FFFFFF;
+  text-decoration: none;
+  text-shadow: none;
+}
+
+.navbar .nav > .active > a,
+.navbar .nav > .active > a:hover,
+.navbar .nav > .active > a:focus {
+  color: #FFFFFF;
+  text-decoration: none;
+  background-color: rgba(255,255,255,0.2);
+  -webkit-border-bottom-left-radius: 5px;
+     -moz-border-bottom-left-radius: 5px;
+          border-bottom-left-radius: 5px;
+  -webkit-border-bottom-right-radius: 5px;
+     -moz-border-bottom-right-radius: 5px;
+          border-bottom-right-radius: 5px;
+
+}
+
 /* Estilos propios */
-.fblancoalfa {
-	background-color: rgba(255,255,255,0.7);
-	/*border: 1px solid white;*/
-}
-
-.posbottom {
-	margin-top: 40%;
-}
-
-.divaltoindex {
-	min-height: 138px;
-}
 
 .infoindex {
-	/*margin-bottom: 10px;*/
 	background-color: transparent;
+	position: absolute;
+	bottom: 0;
+	left: 0;
 }
 
 .infoindex header {
@@ -32,13 +57,13 @@ footer {
 	color: #FFFFFF;
 	font: 1.5em/1.5 Verdana,Helvetica,Arial,sans-serif;
 	background-color: rgba(0,0,0,0.7);
-	text-align: center;
 }
 
 .infoindex p {
 	margin-top: 1px;
-	padding-left: 5px;
-	background-color: rgba(255,255,255,0.7);
+	margin-bottom: 0;
+	padding: 10px;
+	color: #FFFFFF;
+	background-color: rgba(0,0,0,0.7);
+	text-align: justify;
 }
-
-
