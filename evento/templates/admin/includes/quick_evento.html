@@ -1,0 +1,33 @@
+{% load i18n future %}
+
+{% if perms.evento.add_eventopost and perms.evento.change_eventopost %}
+<script>
+// Format newlines for HTML in the quick evento form, since the content
+// is HTML but the form field is plain text.
+$(function() {
+    $('#quick-evento-form').submit(function() {
+        var field = $('#quick-evento-form #id_content');
+        var value = field.attr('value').split('\n\n').join('</p><p>');
+        value = '<p>' + value.split('\n').join('<br>') + '</p>';
+        field.attr('value', value);
+        return true;
+    });
+});
+</script>
+<div class="module">
+    <h2>{% trans "Quick Evento" %}</h2>
+    <form method="post" id="quick-evento-form" action="{% url "admin:evento_eventopost_add" %}">
+        {% csrf_token %}
+        <table id="quick-evento">
+            {{ form.as_table }}
+            <tr>
+                <td>&nbsp;</td>
+                <td style="width:100%;text-align:right;">
+                    <input type="submit" class="default"
+                        value="{% trans "Save Draft" %}" />
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+{% endif %}

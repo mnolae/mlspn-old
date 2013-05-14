@@ -2,6 +2,8 @@
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
 
+from mezzanine.conf import settings
+
 from mezzanine.core.views import direct_to_template
 admin.autodiscover()
 
@@ -15,6 +17,9 @@ urlpatterns = patterns("",
     # admin interface, which would be marginally more secure.
     ("^admin/", include(admin.site.urls)),
 
+    # APP DE EVENTOS
+    url(r'^evento/', include('evento.urls')),
+    
     # We don't want to presume how your homepage works, so here are a
     # few patterns you can use to set it up.
 
@@ -81,11 +86,7 @@ urlpatterns = patterns("",
 
     # ("^%s/" % settings.SITE_PREFIX, include("mezzanine.urls"))
     
-    # APP DE EVENTOS
-    url(r'^event/', include('event.urls')),
-    
 )
-
 
 # Adds ``STATIC_URL`` to the context of error pages, so that error
 # pages can use JS, CSS and images.

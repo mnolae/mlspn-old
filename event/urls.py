@@ -3,13 +3,15 @@ from django.conf.urls import patterns, url
 
 from mezzanine.conf import settings
 
+from event import views
+
 # Leading and trailing slahes for urlpatterns based on setup.
 _slashes = (
     "/" if settings.EVENT_SLUG else "",
     "/" if settings.APPEND_SLASH else "",
 )
 
-# Blog patterns.
+# Event patterns.
 urlpatterns = patterns("event.views",
     url("^%sfeeds/(?P<format>.*)%s$" % _slashes,
         "event_post_feed", name="event_post_feed"),

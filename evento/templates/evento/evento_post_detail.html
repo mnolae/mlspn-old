@@ -1,0 +1,127 @@
+{% extends "evento/evento_post_list.html" %}
+{% load mezzanine_tags comment_tags keyword_tags rating_tags i18n future disqus_tags %}
+
+{% block meta_title %}{{ evento_post.meta_title }}{% endblock %}
+
+{% block meta_keywords %}{% metablock %}
+{% keywords_for evento_post as tags %}
+{% for tag in tags %}{% if not forloop.first %}, {% endif %}{{ tag }}{% endfor %}
+{% endmetablock %}{% endblock %}
+
+{% block meta_description %}{% metablock %}
+{{ evento_post.description }}
+{% endmetablock %}{% endblock %}
+
+{% block title %}
+{% editable evento_post.title %}{{ evento_post.title }}{% endeditable %}
+{% endblock %}
+
+{% block breadcrumb_menu %}
+{{ block.super }}
+<li class="active">{{ evento_post.title }}</li>
+{% endblock %}
+
+{% block main %}
+
+{% block evento_post_detail_postedby %}
+{% editable evento_post.publish_date %}
+<h6>
+    {% trans "Posted by" %}:
+    {% with evento_post.user as author %}
+    <a href="{% url "evento_post_list_author" author %}">{{ author.get_full_name|default:author.username }}</a>
+    {% endwith %}
+    {% blocktrans with sometime=evento_post.publish_date|timesince %}{{ sometime }} ago{% endblocktrans %}
+</h6>
+{% endeditable %}
+{% endblock %}
+{% block evento_post_detail_commentlink %}
+<p>
+    {% if evento_post.allow_comments %}
+        {% if settings.COMMENTS_DISQUS_SHORTNAME %}
+            (<a href="{{ evento_post.get_absolute_url }}#disqus_thread"
+                data-disqus-identifier="{% disqus_id_for evento_post %}">{% spaceless %}
+                {% trans "Comments" %}
+            {% endspaceless %}</a>)
+        {% else %}(<a href="#comments">{% spaceless %}
+            {% blocktrans count evento_post.comments_count as comments_count %}1 comment{% plural %}{{ comments_count }} comments{% endblocktrans %}
+            {% endspaceless %}</a>)
+        {% endif %}
+    {% endif %}
+</p>
+{% endblock %}
+
+{% block evento_post_detail_featured_image %}
+{% if settings.EVENTO_USE_FEATURED_IMAGE and evento_post.featured_image %}
+<p><img src="{{ MEDIA_URL }}{% thumbnail evento_post.featured_image 600 0 %}"></p>
+{% endif %}
+{% endblock %}
+
+{% if settings.COMMENTS_DISQUS_SHORTNAME %}
+{% include "generic/includes/disqus_counts.html" %}
+{% endif %}
+
+{% block evento_post_detail_content %}
+{% editable evento_post.content %}
+{{ evento_post.content|richtext_filter|safe }}
+{% endeditable %}
+{% endblock %}
+
+{% block evento_post_detail_keywords %}
+{% keywords_for evento_post as tags %}
+{% if tags %}
+{% spaceless %}
+<ul class="unstyled tags">
+    <li>{% trans "Tags" %}:</li>
+    {% for tag in tags %}
+    <li><a href="{% url "evento_post_list_tag" tag.slug %}">{{ tag }}</a></li>
+    {% endfor %}
+</ul>
+{% endspaceless %}
+{% endif %}
+{% endblock %}
+
+{% rating_for evento_post %}
+
+{% block evento_post_detail_sharebuttons %}
+{% set_short_url_for evento_post %}
+<a class="btn small primary share-twitter" target="_blank" href="http://twitter.com/home?status={{ evento_post.short_url|urlencode }}%20{{ evento_post.title|urlencode }}">{% trans "Share on Twitter" %}</a>
+<a class="btn small primary share-facebook" target="_blank" href="http://facebook.com/sharer.php?u={{ request.build_absolute_uri }}&amp;t={{ evento_post.title|urlencode }}">{% trans "Share on Facebook" %}</a>
+{% endblock %}
+
+{% block evento_post_previous_next %}
+<ul class="pager">
+{% with evento_post.get_previous_by_publish_date as previous %}
+{% if previous %}
+<li class="previous">
+    <a href="{{ previous.get_absolute_url }}">&larr; {{ previous }}</a>
+</li>
+{% endif %}
+{% endwith %}
+{% with evento_post.get_next_by_publish_date as next %}
+{% if next %}
+<li class="next">
+    <a href="{{ next.get_absolute_url }}">{{ next }} &rarr;</a>
+</li>
+{% endif %}
+{% endwith %}
+</ul>
+{% endblock %}
+
+{% block evento_post_detail_related_posts %}
+{% if evento_post.related_posts.all %}
+<div id="related-posts">
+<h3>{% trans 'Related posts' %}</h3>
+<ul class="unstyled">
+{% for post in evento_post.related_posts.all %}
+     <li><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></li>
+{% endfor %}
+</ul>
+</div>
+{% endif %}
+{% endblock %}
+
+{% block evento_post_detail_comments %}
+{% if evento_post.allow_comments %}{% comments_for evento_post %}{% endif %}
+{% endblock %}
+
+{% endblock %}
