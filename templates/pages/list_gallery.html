@@ -12,6 +12,16 @@
 {% block main %}
 {{ block.super }}
 
+{% block meta_description %}{% metablock %}
+{{ page.description }}
+{% endmetablock %}{% endblock %}
+
+{% for page in pages %}
+
+<h2>
+	<a href="../{{ page.gallery.slug }}">{{ page.gallery.title }}</a>
+</h2>
+
 {% editable page.gallery.content %}
 {{ page.gallery.content|richtext_filter|safe }}
 {% endeditable %}
@@ -34,5 +44,6 @@
 {% endwith %}
 </ul>
 
+{% endfor %}
 {% endblock %}
 
