@@ -129,7 +129,7 @@ SECRET_KEY = "bf98162e-1a97-48cc-8bd4-90fe82c2ffb6e4d4e8bd-5915-4e44-b94e-d516e3
 # Tuple of IP addresses, as strings, that:
 #   * See debug comments, when DEBUG is true
 #   * Receive x-headers
-INTERNAL_IPS = ("127.0.0.1","192.168.1.33")
+INTERNAL_IPS = ("127.0.0.1","192.168.1.34")
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
